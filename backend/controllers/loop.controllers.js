@@ -141,12 +141,10 @@ export const deleteLoop = async (req, res) => {
       return res.status(404).json({ message: "Loop not found" })
     }
 
-    // 🔐 Only author can delete
     if (loop.author.toString() !== req.userId.toString()) {
       return res.status(403).json({ message: "Not authorized to delete this loop" })
     }
 
-    // remove loop from user.loops
     await User.findByIdAndUpdate(req.userId, {
       $pull: { loops: loopId }
     })
