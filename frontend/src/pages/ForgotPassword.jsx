@@ -90,7 +90,7 @@ function ForgotPassword() {
 {step==2 && <div className='w-[90%] max-w-[500px] h-[500px] bg-white rounded-2xl flex justify-center items-center flex-col border-[#1a1f23]'> <h2 className='text-[30px] font-semibold'>Forgot Password</h2>
 
 <div className='relative flex items-center justify-start mt-[30px] w-[90%] h-[50px] rounded-2xl border-2 border-black' onClick={()=> setInputClicked({...inputClicked,otp:true})}>
-    <label htmlFor='otp' className={`text-gray-700 absolute left-[20px] p-[5px] bg-white text-[15px] ${inputClicked.otp?"top-[-15px]":""}`}>Enter OTP</label>
+    <label htmlFor='otp' className={`text-gray-700 absolute left-[20px] p-[5px] bg-white text-[15px] ${inputClicked.email?"top-[-15px]":""}`}>Enter OTP</label>
         <input type = "text" id='otp' className='w-[100%] h-[100%] rounded-2xl px-[20px] outline-none border-0' required onChange={(e)=>setOtp(e.target.value)} value={otp}/>
    
 </div>
