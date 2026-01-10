@@ -101,7 +101,7 @@ export const sendOtp = async (req, res)=>{
         user.isOtpVerified=false
 
         await user.save()
-         await sendMail(email, otp)
+        sendMail(email, otp)
         return res.status(200).json({message: "email successfully send"})
     } catch (error) {
         return res.status(500).json({message:`send otp error ${error}`})
