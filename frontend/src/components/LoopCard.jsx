@@ -241,7 +241,7 @@ function LoopCard({loop}) {
 </div>
           {loop.author?._id === userData._id && (
   <div
-    className="absolute top-[20px] left-[20px] z-[200] cursor-pointer bg-black/50 p-[6px] rounded-full"
+    className="absolute top-[120px] left-[5px] z-[200] cursor-pointer bg-black/50 p-[6px] rounded-full"
     onClick={handleDeleteLoop}
   >
     <MdDelete className="w-[22px] h-[22px] text-red-500" />
