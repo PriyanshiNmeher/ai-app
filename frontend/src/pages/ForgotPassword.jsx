@@ -31,7 +31,7 @@ function ForgotPassword() {
       } catch (error) {
         console.log(error)
         setLoading(false)
-        setErr(error.reponse?.data?.message)
+        setErr(error.response?.data?.message)
       }
     }
 
@@ -47,7 +47,7 @@ function ForgotPassword() {
       } catch (error) {
         console.log(error)
         setLoading(false)
-        setErr(error.reponse?.data?.message)
+        setErr(error.response?.data?.message)
       }
     }
 
