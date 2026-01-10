@@ -10,6 +10,8 @@ import { serverUrl } from '../App'
 import { setLoopData } from '../redux/loopSlice'
 
 import { IoSendSharp } from 'react-icons/io5'
+import { MdDelete } from "react-icons/md"
+
 
 function LoopCard({loop}) {
     const videoRef=useRef()
@@ -90,6 +92,22 @@ function LoopCard({loop}) {
             console.log(error)
           }
          }
+
+    const handleDeleteLoop = async () => {
+  try {
+    await axios.delete(
+      `${serverUrl}/api/loop/delete/${loop._id}`,
+      { withCredentials: true }
+    )
+
+    const updatedLoops = loopData.filter(l => l._id !== loop._id)
+    dispatch(setLoopData(updatedLoops))
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 
     useEffect(()=>{
         const observer=new IntersectionObserver(([entry])=>{
@@ -221,6 +239,15 @@ function LoopCard({loop}) {
     <div><MdOutlineComment className='w-[25px] cursor-pointer h-[25px]'/></div>
     <div>{loop.comments.length}</div>
 </div>
+          {loop.author?._id === userData._id && (
+  <div
+    className="absolute top-[20px] left-[20px] z-[200] cursor-pointer bg-black/50 p-[6px] rounded-full"
+    onClick={handleDeleteLoop}
+  >
+    <MdDelete className="w-[22px] h-[22px] text-red-500" />
+  </div>
+)}
+
 
       </div>
 
