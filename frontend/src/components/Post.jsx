@@ -100,7 +100,7 @@ useEffect(()=>{
 
         <div className='flex justify-center items-center md:gap-[20px] gap-[10px]' onClick={()=>navigate(`/profile/${post.author?.userName}`)}>
 
-<div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] border-2 border-black rounded-full cursor-pointer overflow-hidden'>
+<div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] bg-black border-2 border-black rounded-full cursor-pointer overflow-hidden'>
                 <img src={post.author?.profileImage || dp} alt="" className='w-full object-cover'/>
             </div>
             <div className='w-[150px] font-semibold truncate'>{post.author.userName}</div>
