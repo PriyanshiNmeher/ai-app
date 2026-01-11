@@ -76,6 +76,28 @@ function Post({post,isMyProfile}) {
       }
      }
 
+     const handleDeleteComment = async (commentId) => {
+  const confirmDelete = window.confirm("Delete this comment?")
+  if (!confirmDelete) return
+
+  try {
+    const result = await axios.delete(
+      `${serverUrl}/api/post/comment/${post._id}/${commentId}`,
+      { withCredentials: true }
+    )
+
+    const updatedPost = result.data
+    const updatedPosts = postData.map(p =>
+      p._id === post._id ? updatedPost : p
+    )
+
+    dispatch(setPostData(updatedPosts))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
      
 useEffect(()=>{
     socket?.on("likedPost",(updatedData)=>{
@@ -173,16 +195,38 @@ useEffect(()=>{
 
             <div className='w-full max-h-[300px] overflow-auto'>
 
-{post.comments?.map((com, index)=>(
+{post.comments?.map((com, index) => (
+  <div
+    key={index}
+    className="w-full px-[20px] py-[20px] flex items-center justify-between gap-[20px] border-b-2 border-b-gray-200"
+  >
+    <div className="flex items-center gap-[15px]">
+      <div className="w-[40px] h-[40px] md:w-[50px] md:h-[50px] border-2 border-black rounded-full overflow-hidden">
+        <img
+          src={com.author?.profileImage || dp}
+          alt=""
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-<div key={index} className='w-full px-[20px] py-[20px] flex items-center gap-[20px] border-b-2 border-b-gray-200'>
-   <div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] border-2 border-black rounded-full cursor-pointer overflow-hidden'>
-                <img src={com.author?.profileImage || dp} alt="" className='w-full object-cover'/>
-            </div>
-                <div>{com.message}</div>
-</div>
+      <div>
+        <p className="font-semibold text-[14px]">
+          {com.author?.userName}
+        </p>
+        <p className="text-[13px]">{com.message}</p>
+      </div>
+    </div>
 
+    {(userData._id === com.author?._id ||
+      userData._id === post.author?._id) && (
+      <MdDelete
+        className="text-red-600 cursor-pointer"
+        onClick={() => handleDeleteComment(com._id)}
+      />
+    )}
+  </div>
 ))}
+
 
             </div>
       </div>}

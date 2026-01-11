@@ -84,7 +84,9 @@ const uploadLoop=async () => {
         formData.append("caption", caption)
         formData.append("media", backendMedia)
 
-        const result=await axios.post(`${serverUrl}/api/loop/upload`, formData,{withCredentials:true})
+        const result=await axios.post(`${serverUrl}/api/loop/upload`, formData,{withCredentials:true,headers: {
+      "Content-Type": "multipart/form-data"
+    }})
         dispatch(setLoopData([...loopData,result.data]))
          setLoading(false)
         navigate("/")

@@ -39,10 +39,9 @@ const uploadOnCloudinary = async (file) => {
             return null;
         }
 
-        // ⚠️ AWAIT missing tha - ye main problem thi!
         const result = await cloudinary.uploader.upload(file, {
             resource_type: 'auto',
-            folder: 'profiles' // Optional
+            folder: 'profiles'
         });
 
         console.log("Cloudinary upload successful:", result.secure_url);

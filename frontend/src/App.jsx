@@ -25,10 +25,12 @@ import Search from './pages/Search'
 import useGetAllNotifications from './hooks/useGetAllNotifications'
 import Notifications from './pages/Notifications'
 import { setNotificationData } from './redux/userSlice'
+import axios from 'axios'
 
 
 
 export const serverUrl= "http://localhost:8000"
+axios.defaults.withCredentials = true
 
 function App() {
 

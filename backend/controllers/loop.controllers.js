@@ -131,3 +131,28 @@ export const getAllLoops=async (req, res)=>{
         return res.status(500).json({message: `getallloop error ${error}`})
     }
 }
+
+export const deleteLoop = async (req, res) => {
+  try {
+    const { loopId } = req.params
+
+    const loop = await Loop.findById(loopId)
+    if (!loop) {
+      return res.status(404).json({ message: "Loop not found" })
+    }
+
+    if (loop.author.toString() !== req.userId.toString()) {
+      return res.status(403).json({ message: "Not authorized to delete this loop" })
+    }
+    
+    await User.findByIdAndUpdate(req.userId, {
+      $pull: { loops: loopId }
+    })
+
+    await loop.deleteOne()
+
+    return res.status(200).json({ message: "Loop deleted successfully", loopId })
+  } catch (error) {
+    return res.status(500).json({ message: `delete loop error ${error}` })
+  }
+}
