@@ -2,6 +2,7 @@ import { populate } from "dotenv"
 import uploadOnCloudinary from "../config/cloudinary.js"
 import User from "../models/user.model.js"
 import Notification from "../models/notification.model.js"
+import { getSocketId, io } from "../socket.js"
 
 export const getCurrentUser = async (req, res)=>{
     try {
