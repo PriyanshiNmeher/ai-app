@@ -92,6 +92,43 @@ export const comment= async (req, res) => {
             return res.status(400).json({message:"post not found"})
         }
 
+
+
+        export const deleteComment = async (req, res) => {
+  try {
+    const { postId, commentId } = req.params
+    const userId = req.userId
+
+    const post = await Post.findById(postId)
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" })
+    }
+
+    const comment = post.comments.id(commentId)
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found" })
+    }
+
+    if (
+      comment.author.toString() !== userId.toString() &&
+      post.author.toString() !== userId.toString()
+    ) {
+      return res.status(403).json({ message: "Not authorized to delete this comment" })
+    }
+
+    comment.deleteOne()
+    await post.save()
+
+    await post.populate("author", "name userName profileImage")
+    await post.populate("comments.author", "name userName profileImage")
+
+    return res.status(200).json(post)
+  } catch (error) {
+    return res.status(500).json({ message: `delete comment error ${error}` })
+  }
+}
+
+
         post.comments.push({
             author:req.userId,
             message
