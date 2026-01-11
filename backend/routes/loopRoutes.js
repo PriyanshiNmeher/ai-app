@@ -11,6 +11,6 @@ loopRouter.post("/upload", isAuth,upload.single("media") ,uploadLoop)
 loopRouter.get("/getAll", isAuth, getAllLoops)
 loopRouter.get("/like/:loopId", isAuth, like)
 loopRouter.post("/comment/:loopId", isAuth,comment)
-loopRouter.delete("/delete/:loopId", isAuth, deleteLoop)
+
 
 export default loopRouter

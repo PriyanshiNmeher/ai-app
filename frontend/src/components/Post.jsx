@@ -122,7 +122,7 @@ useEffect(()=>{
 
         <div className='flex justify-center items-center md:gap-[20px] gap-[10px]' onClick={()=>navigate(`/profile/${post.author?.userName}`)}>
 
-<div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] border-2 border-black rounded-full cursor-pointer overflow-hidden'>
+<div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] bg-black border-2 border-black rounded-full cursor-pointer overflow-hidden'>
                 <img src={post.author?.profileImage || dp} alt="" className='w-full object-cover'/>
             </div>
             <div className='w-[150px] font-semibold truncate'>{post.author.userName}</div>
@@ -186,7 +186,7 @@ useEffect(()=>{
      {showComment && 
      <div className='w-full flex flex-col gap-[30px] pb-[20px] '>
       <div className='w-full h-[80px] flex items-center justify-between px-[20px] relative'>
-      <div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] border-2 border-black rounded-full cursor-pointer overflow-hidden'>
+      <div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] bg-black border-2 border-black rounded-full cursor-pointer overflow-hidden'>
                 <img src={post.author?.profileImage || dp} alt="" className='w-full object-cover'/>
             </div>
             <input type="text" className='px-[10px] border-b-2 border-b-gray-500 w-[90%] outline-none h-[40px]' placeholder='Write comment...' onChange={(e)=>setMessage(e.target.value)} value={message}/>

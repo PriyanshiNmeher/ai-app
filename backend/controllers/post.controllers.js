@@ -92,7 +92,8 @@ export const comment= async (req, res) => {
             return res.status(400).json({message:"post not found"})
         }
 
-        post.comments.push({
+
+post.comments.push({
             author:req.userId,
             message
         })
@@ -115,7 +116,7 @@ export const comment= async (req, res) => {
 
         await post.save()
          await post.populate("author", "name userName profileImage")
-         await post.populate("comments.author" , "userName profileImage")
+         await post.populate("comments.author", "userName profileImage")
 
          io.emit("CommentedPost",{
              postId:post._id,
@@ -181,7 +182,6 @@ export const deletePost = async (req, res) => {
     return res.status(500).json({ message: `delete post error ${error}` })
   }
 }
-
 
 export const deleteComment = async (req, res) => {
   try {

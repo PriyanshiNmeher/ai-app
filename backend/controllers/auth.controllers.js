@@ -35,8 +35,8 @@ export const signUp = async (req, res)=>{
         res.cookie("token", token,{
             httpOnly:true,
             maxAge: 10*365*24*60*60*1000,
-           secure: true,
-            sameSite: "None"
+            secure: true,
+            sameSite: "Node"
         })
         
         return res.status(201).json(user)
@@ -65,8 +65,8 @@ export const signIn = async (req, res)=>{
         res.cookie("token", token,{
             httpOnly:true,
             maxAge: 10*365*24*60*60*1000,
-            secure: true,
-            sameSite: "None"
+            secure: false,
+            sameSite: "Strict"
         })
         
         return res.status(200).json(user)
@@ -101,7 +101,7 @@ export const sendOtp = async (req, res)=>{
         user.isOtpVerified=false
 
         await user.save()
-         sendMail(email, otp)
+        sendMail(email, otp)
         return res.status(200).json({message: "email successfully send"})
     } catch (error) {
         return res.status(500).json({message:`send otp error ${error}`})
@@ -113,7 +113,7 @@ export const verifyOtp=async(req, res)=>{
         const {email, otp}= req.body
         const user= await User.findOne({email})
 
-        if(!user || user.resetOtp!== otp || user.otpExpires< Date.now()){
+        if(!user || user.resetOtp!== String(otp) || user.otpExpires< Date.now()){
          return res.status(400).json({message: "invalid/expired otp"})
         }
 

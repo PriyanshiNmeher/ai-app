@@ -15,7 +15,7 @@ const server=http.createServer(app)
 // Now adding socket io
 const io=new Server(server,{
     cors:{
-        origin:"http://localhost:5173",
+        origin:"https://ai-app-0i2h.onrender.com",
         methods:["GET","POST"]
     }
 })

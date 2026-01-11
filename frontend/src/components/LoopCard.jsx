@@ -93,7 +93,7 @@ function LoopCard({loop}) {
           }
          }
 
-         const handleDeleteLoop = async () => {
+                 const handleDeleteLoop = async () => {
   try {
     await axios.delete(
       `${serverUrl}/api/loop/delete/${loop._id}`,
@@ -244,8 +244,8 @@ function LoopCard({loop}) {
     <div><MdOutlineComment className='w-[25px] cursor-pointer h-[25px]'/></div>
     <div>{loop.comments.length}</div>
 </div>
-   
-        {loop.author?._id === userData._id && (
+
+    {loop.author?._id === userData._id && (
   <div
     className="absolute top-[120px] left-[5px] z-[200] cursor-pointer bg-black/50 p-[6px] rounded-full"
     onClick={handleDeleteLoop}
@@ -253,7 +253,6 @@ function LoopCard({loop}) {
     <MdDelete className="w-[22px] h-[22px] text-red-500" />
   </div>
 )}
-
  </div>
  
      </div>
