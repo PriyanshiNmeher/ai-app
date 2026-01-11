@@ -98,7 +98,7 @@ useEffect(()=>{
     <div className='w-[90%] flex flex-col gap-[10px] bg-white items-center shadow-2xl shadow-[#00000058] rounded-2xl pb-[20px]'>
      <div className='w-full h-[80px] flex justify-between items-center px-[10px]'>
 
-        <div className='flex justify-center bg-black items-center md:gap-[20px] gap-[10px]' onClick={()=>navigate(`/profile/${post.author?.userName}`)}>
+        <div className='flex justify-center items-center md:gap-[20px] gap-[10px]' onClick={()=>navigate(`/profile/${post.author?.userName}`)}>
 
 <div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] bg-black border-2 border-black rounded-full cursor-pointer overflow-hidden'>
                 <img src={post.author?.profileImage || dp} alt="" className='w-full object-cover'/>
