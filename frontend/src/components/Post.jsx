@@ -173,15 +173,34 @@ useEffect(()=>{
 
             <div className='w-full max-h-[300px] overflow-auto'>
 
-{post.comments?.map((com, index)=>(
+{post.comments?.map((com) => (
+  <div
+    key={com._id}
+    className='w-full px-[20px] py-[20px] flex justify-between items-center gap-[20px] border-b-2 border-b-gray-200'
+  >
+    <div className='flex items-center gap-[20px]'>
+      <div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] border-2 border-black rounded-full cursor-pointer overflow-hidden'>
+        <img
+          src={com.author?.profileImage || dp}
+          alt=""
+          className='w-full object-cover'
+        />
+      </div>
 
-<div key={index} className='w-full px-[20px] py-[20px] flex items-center gap-[20px] border-b-2 border-b-gray-200'>
-   <div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] border-2 border-black rounded-full cursor-pointer overflow-hidden'>
-                <img src={com.author?.profileImage || dp} alt="" className='w-full object-cover'/>
-            </div>
-                <div>{com.message}</div>
-</div>
+      <div>
+        <p className='font-semibold'>{com.author?.userName}</p>
+        <p>{com.message}</p>
+      </div>
+    </div>
 
+    {(userData._id === com.author?._id ||
+      userData._id === post.author?._id) && (
+      <MdDelete
+        className='w-[20px] h-[20px] text-red-600 cursor-pointer'
+        onClick={() => handleDeleteComment(com._id)}
+      />
+    )}
+  </div>
 ))}
 
             </div>
