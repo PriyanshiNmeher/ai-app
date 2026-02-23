@@ -2,9 +2,22 @@ import sendMail from "../config/Mail.js"
 import genToken from "../config/token.js"
 import User from "../models/user.model.js"
 import bcrypt from "bcryptjs"
+import { z } from "zod"
+
+const signupSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+  userName: z.string().min(3),
+  name: z.string().min(1)
+})
 
 export const signUp = async (req, res)=>{
     try {
+
+        const validation = signupSchema.safeParse(req.body)
+    if(!validation.success) {
+      return res.status(400).json({message: validation.error.errors[0].message})
+    }
         const {name, email, password, userName}= req?.body
 
         const findByEmail = await User.findOne({email})

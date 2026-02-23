@@ -10,15 +10,24 @@ import loopRouter from "./routes/loopRoutes.js";
 import storyRouter from "./routes/story.routes.js";
 import messageRouter from "./routes/message.routes.js";
 import { app, server } from "./socket.js";
+import rateLimit from "express-rate-limit"
+import helmet from "helmet"
+import morgan from "morgan"
 
 dotenv.config()
 
 const port = process.env.PORT || 5000
 
+app.use(helmet())
+app.use(morgan("dev"))
+app.use(rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100
+}))
 app.use(cors({
-    // origin : "https://ai-app-0i2h.onrender.com",
+    origin : process.env.FRONTEND_URL,
     // origin : "http://localhost:5173",
-    origin : "https://ai-app-roan-psi.vercel.app",
+   
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
@@ -32,6 +41,13 @@ app.use("/api/post", postRouter)
 app.use("/api/loop", loopRouter)
 app.use("/api/story", storyRouter)
 app.use("/api/message", messageRouter)
+
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(err.status || 500).json({
+    message: err.message || "Something went wrong"
+  })
+})
 
 server.listen(port, ()=>{
     connectDb()
