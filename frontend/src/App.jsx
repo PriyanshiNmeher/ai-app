@@ -30,8 +30,8 @@ import { setNotificationData } from './redux/userSlice'
 import axios from 'axios'
 
 // ✅ localhost hata ke deployed URL add kiya
-// export const serverUrl = "https://ai-app-back/end-38i5.onrender.com"
-export const serverUrl= "http://localhost:8000"
+export const serverUrl = "https://ai-app-backend-38i5.onrender.com"
+// export const serverUrl= "http://localhost:8000"
 
 // ✅ ProtectedRoute component
 const ProtectedRoute = ({ children }) => {
