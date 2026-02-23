@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { loadFromStorage, saveToStorage } from '../utils/localStorage'
 const messageSlice=createSlice({
     name: "message",
     initialState:{
         selectedUser: [],
         messages:[],
-        // prevChatUsers:[],
-        prevChatUsers: loadFromStorage('prevChatUsers') || []
+        prevChatUsers:[],
        
     },
     reducers:{
@@ -18,7 +16,6 @@ const messageSlice=createSlice({
         },
         setPrevChatUsers:(state, action)=>{
             state.prevChatUsers=action.payload
-            saveToStorage('prevChatUsers', action.payload)
         },
         
     }

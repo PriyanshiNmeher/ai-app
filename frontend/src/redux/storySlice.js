@@ -1,12 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { loadFromStorage, saveToStorage } from '../utils/localStorage'
 const storySlice=createSlice({
     name: "user",
     initialState:{
-        // storyData: [],
-        // storyList:[],
-         storyList: loadFromStorage('storyList') || [],
-  currentUserStory: loadFromStorage('currentUserStory') || null,
+        storyData: [],
+        storyList:[],
         currentUserStory:[],
         
     },
@@ -17,11 +14,9 @@ const storySlice=createSlice({
     
         setStoryList:(state, action)=>{
             state.storyList=action.payload
-            saveToStorage('storyList', action.payload)
         },
         setCurrentUserStory:(state, action)=>{
             state.currentUserStory=action.payload
-            saveToStorage('currentUserStory', action.payload)
         },
        
     }

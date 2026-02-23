@@ -1,29 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { loadFromStorage, saveToStorage } from '../utils/localStorage'
 const userSlice=createSlice({
     name: "user",
     initialState:{
-        // userData: null,
-        userData: loadFromStorage('userData') || null,
+        userData: null,
         suggestedUsers:null,
         profileData:null,
-        // following:[],
-        following: loadFromStorage('following') || [],
+        following:[],
         searchData:null,
         notificationData:[],
     },
     reducers:{
-        // setUserData:(state, action)=>{
-        //     state.userData=action.payload
-        // },
-        setUserData: (state, action) => {
-  state.userData = action.payload
-  if (action.payload) {
-    saveToStorage('userData', action.payload)
-  } else {
-    removeFromStorage('userData') 
-  }
-},
+        setUserData:(state, action)=>{
+            state.userData=action.payload
+        },
         setSuggestedUsers:(state, action)=>{
             state.suggestedUsers=action.payload
         },
@@ -36,13 +25,9 @@ const userSlice=createSlice({
         setNotificationData:(state, action)=>{
             state.notificationData=action.payload
         },
-        // setFollowing:(state, action)=>{
-        //     state.following=action.payload
-        // },
-        setFollowing: (state, action) => {
-  state.following = action.payload
-  saveToStorage('following', action.payload)
-},
+        setFollowing:(state, action)=>{
+            state.following=action.payload
+        },
         toggleFollow:(state, action)=>{
             const targetUserId=action.payload
             if (state.following.includes(targetUserId)) {
@@ -50,16 +35,7 @@ const userSlice=createSlice({
             } else {
                 state.following.push(targetUserId)
             }
-             saveToStorage('following', state.following)
         }
-        // toggleFollow:(state, action)=>{
-        //     const targetUserId=action.payload
-        //     if (state.following.includes(targetUserId)) {
-        //         state.following=state.following.filter(id=>id!=targetUserId)
-        //     } else {
-        //         state.following.push(targetUserId)
-        //     }
-        // }
     }
 })
 
