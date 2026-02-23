@@ -17,8 +17,11 @@ const port = process.env.PORT || 5000
 
 app.use(cors({
     // origin : "https://ai-app-0i2h.onrender.com",
-    origin : "http://localhost:5173",
-    credentials: true
+    // origin : "http://localhost:5173",
+    origin : "https://ai-app-roan-psi.vercel.app",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }))
 app.use(express.json())
 app.use(cookieParser())
