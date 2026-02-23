@@ -16,7 +16,7 @@ const server=http.createServer(app)
 const io=new Server(server,{
     cors:{
         // origin : process.env.FRONTEND_URL,
-        origin : "http://localhost:5173",
+        origin : "https://ai-app-roan-psi.vercel.app",,
         methods:["GET","POST"],
         credentials: true
     }
