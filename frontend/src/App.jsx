@@ -29,7 +29,8 @@ import axios from 'axios'
 
 
 
-export const serverUrl= "http://localhost:8000"
+// export const serverUrl= "http://localhost:8000"
+export const serverUrl= "https://ai-app-backend-38i5.onrender.com"
 
 function App() {
 
