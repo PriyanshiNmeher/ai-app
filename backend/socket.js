@@ -16,6 +16,7 @@ const server=http.createServer(app)
 const io=new Server(server,{
     cors:{
         origin:"https://ai-app-roan-psi.vercel.app",
+        credentials: true,
         methods:["GET","POST"]
     }
 })
