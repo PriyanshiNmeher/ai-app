@@ -15,7 +15,7 @@ const server=http.createServer(app)
 // Now adding socket io
 const io=new Server(server,{
     cors:{
-        origin:"https://ai-app-0i2h.onrender.com",
+        origin:"https://ai-app-roan-psi.vercel.app",
         methods:["GET","POST"]
     }
 })
