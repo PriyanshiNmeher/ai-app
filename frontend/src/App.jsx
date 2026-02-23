@@ -7,7 +7,7 @@ import Home from './pages/Home'
 import { useDispatch, useSelector } from 'react-redux'
 import useGetCurrentUser from './hooks/useGetCurrentUser'
 import useGetSuggestedUsers from './hooks/useGetSuggestedUsers'
-import Profile from './paghttp://localhost:8000es/Profile'
+import Profile from './pages/Profile'
 import EditProfile from './pages/EditProfile'
 import Upload from './pages/Upload'
 import useGetAllPost from './hooks/useGetAllPost'
@@ -29,7 +29,7 @@ import axios from 'axios'
 
 
 
-export const serverUrl= "https://ai-app-backend-38i5.onrender.com"
+export const serverUrl= "http://localhost:8000"
 
 function App() {
 
